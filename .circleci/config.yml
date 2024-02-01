@@ -19,7 +19,8 @@ jobs:
       # Apply MongoDB Secrets
       - run:
           name: Apply MongoDB Secrets
-          command: kubectl apply -f mongo-secrets.yaml
+          command: |
+           kubectl apply -f mongo-secrets.yaml
 
       # Deploy MongoDB
       - run:
