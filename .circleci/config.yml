@@ -21,45 +21,14 @@ jobs:
             kubectl apply -f mongo-express.yaml
             kubectl apply -f my-app.yaml
 
-      
-      #PASSWORD=$(aws ecr get-login-password --region $AWS_DEFAULT_REGION)
-      #echo "Creating Docker registry secret..."
-      #kubectl create secret docker-registry ecr-secret --docker-server=339713019591.dkr.ecr.ap-southeast-2.amazonaws.com --docker-username=AWS --docker-password="${PASSWORD}" 
-
-      # # Apply MongoDB Secrets
-      # - run:
-      #     name: Apply MongoDB Secrets
-      #     command: |
-      #      kubectl apply -f mongo-secrets.yaml
-
-      # # Deploy MongoDB
-      # - run:
-      #     name: Deploy MongoDB
-      #     command: kubectl apply -f mongo.yaml
-
-      # # Apply MongoDB ConfigMap
-      # - run:
-      #     name: Apply MongoDB ConfigMap
-      #     command: kubectl apply -f mongo-configMap.yaml
-
-      # # Deploy Mongo Express
-      # - run:
-      #     name: Deploy Mongo Express
-      #     command: kubectl apply -f mongo-express.yaml
-
-      # # Create Docker Registry Secret for AWS ECR
-      # - run:
-      #     name: Create Docker Registry Secret
-      #     command: |
-      #       echo $(aws ecr get-login-password --region $AWS_DEFAULT_REGION) | kubectl create secret docker-registry ecr-secret --docker-server=339713019591.dkr.ecr.ap-southeast-2.amazonaws.com --docker-username=AWS --docker-password-stdin --docker-email=ranjan.s.1227@gmailcom
-
-      # # Deploy My App
-      # - run:
-      #     name: Deploy My Application
-      #     command: kubectl apply -f my-app.yaml
-#
 workflows:
   version: 2
   deploy:
     jobs:
       - deploy_to_kubernetes
+
+
+      # Was Used for creating the ecr secret.  
+      #PASSWORD=$(aws ecr get-login-password --region $AWS_DEFAULT_REGION)
+      #echo "Creating Docker registry secret..."
+      #kubectl create secret docker-registry ecr-secret --docker-server=339713019591.dkr.ecr.ap-southeast-2.amazonaws.com --docker-username=AWS --docker-password="${PASSWORD}" 
