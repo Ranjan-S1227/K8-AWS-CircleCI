@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 1  
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: nodejs-container
+        image: 339713019591.dkr.ecr.ap-southeast-2.amazonaws.com/k8-v2-demo-app:latest 
+        ports:
+        - containerPort: 3000  
+        env:
+            - name: MONGODB_URI
+              value: "mongodb://username:password@mongodb-service:27017"
+      imagePullSecrets:
+            - name: ecr-secret #created using termianl
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-nodejs-app-service
+spec:
+  type: LoadBalancer  
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+    nodePort: 31000
+  selector:
+    app: my-app
+
+#kubectl create secret docker-registry ecr-secret --docker-server=339713019591.dkr.ecr.ap-southeast-2.amazonaws.com --docker-username=AWS --docker-password=$(aws ecr get-login-password --region ap-southeast-2) --docker-email=ranjan.s.1227@gmailcom 
