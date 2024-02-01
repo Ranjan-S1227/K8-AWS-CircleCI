@@ -17,9 +17,8 @@ jobs:
       - run:
           name: Debug Kubeconfig
           command: |
-            kubectl config view
-            kubectl config current-context
-            kubectl cluster-info
+            kubectl config get current-context
+
 
 
       # Apply MongoDB Secrets
