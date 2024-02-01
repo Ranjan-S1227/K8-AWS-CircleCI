@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: Secret
-metadata:
-  name: circleci-token
-  annotations:
-    kubernetes.io/service-account.name: circleci
-type: kubernetes.io/service-account-token
