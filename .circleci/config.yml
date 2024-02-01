@@ -19,7 +19,7 @@ jobs:
             kubectl apply -f mongo.yaml
             kubectl apply -f mongo-configMap.yaml
             kubectl apply -f mongo-express.yaml
-            echo $(aws ecr get-login-password --region $AWS_DEFAULT_REGION) | kubectl create secret docker-registry ecr-secret --docker-server=339713019591.dkr.ecr.ap-southeast-2.amazonaws.com --docker-username=AWS --docker-password-stdin --docker-email=ranjan.s.1227@gmailcom
+            echo $(aws ecr get-login-password --region $AWS_DEFAULT_REGION) | kubectl create secret docker-registry ecr-secret --docker-server=339713019591.dkr.ecr.ap-southeast-2.amazonaws.com --docker-username=AWS --docker-password="${PASSWORD}" --docker-email=ranjan.s.1227@gmailcom
             kubectl apply -f my-app.yaml
 
 
@@ -48,7 +48,7 @@ jobs:
       # - run:
       #     name: Create Docker Registry Secret
       #     command: |
-      #       echo $(aws ecr get-login-password --region $AWS_DEFAULT_REGION) | kubectl create secret docker-registry ecr-secret --docker-server=339713019591.dkr.ecr.ap-southeast-2.amazonaws.com --docker-username=AWS --docker-password-stdin --docker-email=ranjan.s.1227@gmailcom
+      #       echo $(aws ecr get-login-password --region $AWS_DEFAULT_REGION) | kubectl create secret docker-registry ecr-secret --docker-server=339713019591.dkr.ecr.ap-southeast-2.amazonaws.com --docker-username=AWS --docker-password="${PASSWORD}" --docker-email=ranjan.s.1227@gmailcom
 
       # # Deploy My App
       # - run:
